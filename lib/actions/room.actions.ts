@@ -19,7 +19,7 @@ export const createDocument = async ({
       [email]: ["room:write"],
     };
 
-    const room = await liveblocks.createRoom("roomId", {
+    const room = await liveblocks.createRoom(roomId, {
       metadata,
       usersAccesses,
       defaultAccesses: [],
