@@ -8,8 +8,8 @@ import { Editor } from "./editor/Editor";
 import ActiveCollaborators from "./ActiveCollaborators";
 import { Input } from "./ui/input";
 import Image from "next/image";
-import { ContainerWithChildren } from "postcss/lib/container";
 import { updateDocument } from "@/lib/actions/room.actions";
+import Loader from "./Loader";
 
 const CollaborativeRoom = ({
   roomId,
@@ -53,7 +53,6 @@ const CollaborativeRoom = ({
       ) {
         setEditing(false);
       }
-
       updateDocument(roomId, documentTitle);
     };
 
@@ -72,7 +71,7 @@ const CollaborativeRoom = ({
 
   return (
     <RoomProvider id={roomId}>
-      <ClientSideSuspense fallback={<div>Loading…</div>}>
+      <ClientSideSuspense fallback={<Loader />}>
         <div className="collaborative-room">
           <Header>
             <div

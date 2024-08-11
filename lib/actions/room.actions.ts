@@ -5,6 +5,7 @@ import { liveblocks } from "../liveblocks";
 import { RoomAccesses } from "@liveblocks/node";
 import { revalidatePath } from "next/cache";
 import { parseStringify } from "../utils";
+import { string } from "prop-types";
 
 export const createDocument = async ({
   userId,
@@ -68,5 +69,15 @@ export const updateDocument = async (roomId: string, title: string) => {
     return parseStringify(updateDocument);
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const getDocuments = async (email: string) => {
+  try {
+    const rooms = await liveblocks.getRooms({ userId: email });
+
+    return parseStringify(rooms);
+  } catch (error) {
+    console.log(error);
   }
 };
